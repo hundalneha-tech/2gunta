@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Senior PHP Developer</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+        header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        header p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+        }
+        .required {
+            color: #e74c3c;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+        .file-upload input {
+            display: none;
+        }
+        .file-upload-label {
+            display: block;
+            padding: 12px;
+            border: 2px dashed #667eea;
+            border-radius: 6px;
+            text-align: center;
+            background: #f8f9ff;
+            color: #667eea;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .file-upload-label:hover {
+            background: #f0f2ff;
+            border-color: #764ba2;
+        }
+        .file-name {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 8px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .checkbox-label {
+            flex: 1;
+            font-weight: normal;
+            margin: 0;
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.5;
+        }
+        .checkbox-label a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .recaptcha-wrapper {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+        }
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .section-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .hint {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            color: #667eea;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Apply Now</h1>
+            <p>Senior PHP Developer at 2gunta</p>
+        </header>
+
+        <div class="form-container">
+            <div class="success-message">
+                ✓ Your application has been submitted successfully! We'll review it and contact you soon.
+            </div>
+            <div class="error-message">
+                ✗ Something went wrong. Please check your entries and try again.
+            </div>
+
+            <form id="applicationForm" novalidate>
+                <!-- Personal Information Section -->
+                <div class="section-title">Personal Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                    <div class="hint">We'll use this to contact you with updates about your application</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Current Location</label>
+                    <input type="text" id="location" name="location" placeholder="New York, NY">
+                </div>
+
+                <!-- Professional Information Section -->
+                <div class="section-title">Professional Information</div>
+
+                <div class="form-group">
+                    <label for="experience">Years of Experience</label>
+                    <select id="experience" name="experience">
+                        <option value="">Select experience level...</option>
+                        <option value="0-2">0-2 years</option>
+                        <option value="2-5">2-5 years</option>
+                        <option value="5-10">5-10 years (Preferred)</option>
+                        <option value="10+">10+ years</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="portfolio">Portfolio / Website URL</label>
+                    <input type="text" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                    <div class="hint">Link to your GitHub, personal website, or portfolio</div>
+                </div>
+
+                <!-- Document Upload Section -->
+                <div class="section-title">Resume & Cover Letter</div>
+
+                <div class="form-group">
+                    <label>Resume (PDF, DOC, or DOCX) <span class="required">*</span></label>
+                    <div class="file-upload">
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                        <label for="resume" class="file-upload-label">
+                            📎 Click to upload or drag and drop
+                        </label>
+                        <div class="file-name" id="resumeName"></div>
+                    </div>
+                    <div class="hint">Maximum file size: 5MB. Accepted formats: PDF, DOC, DOCX</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="coverLetter">Cover Letter</label>
+                    <textarea id="coverLetter" name="coverLetter" placeholder="Tell us why you're interested in this role and what makes you a great fit..."></textarea>
+                    <div class="hint">Optional, but recommended (max 1000 characters)</div>
+                </div>
+
+                <!-- Consent & Verification Section -->
+                <div class="section-title">Consent & Verification</div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="gdpr" name="gdpr" required>
+                    <label class="checkbox-label" for="gdpr">
+                        I agree that 2gunta can store and process my personal data for recruitment purposes. <a href="#">Learn more</a> <span class="required">*</span>
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label class="checkbox-label" for="terms">
+                        I have read and agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> <span class="required">*</span>
+                    </label>
+                </div>
+
+                <!-- reCAPTCHA -->
+                <div class="recaptcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                    <div class="hint" style="margin-top: 10px;">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">
+                    Submit Application
+                </button>
+
+                <div class="loading" id="loading">
+                    ⏳ Submitting your application...
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // File upload preview
+        document.getElementById('resume').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || '';
+            document.getElementById('resumeName').textContent = fileName ? '✓ ' + fileName + ' selected' : '';
+        });
+
+        // Form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading message
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.submit-btn').disabled = true;
+
+            // Mock API call
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+                
+                // Show success message
+                document.querySelector('.success-message').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                document.getElementById('resumeName').textContent = '';
+                
+                // Scroll to message
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Mock Google Analytics
+                console.log('[MOCK] Google Analytics - Application submitted for job ID: 123');
+            }, 1500);
+        });
+
+        // Mock reCAPTCHA (in production, Google's JS handles this)
+        console.log('[MOCK] reCAPTCHA - Ready for verification');
+    </script>
+</body>
+</html>

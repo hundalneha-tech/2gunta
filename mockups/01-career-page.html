@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2gunta Careers - Job Listings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .search-bar input,
+        .search-bar select {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        .search-bar input:focus,
+        .search-bar select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .search-bar button {
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .search-bar button:hover {
+            background: #764ba2;
+        }
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .job-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #667eea;
+        }
+        .job-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+        .job-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #667eea;
+        }
+        .job-company {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #555;
+        }
+        .job-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95em;
+            color: #888;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .job-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .job-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .apply-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .apply-btn:hover {
+            background: #764ba2;
+        }
+        .salary {
+            font-weight: 600;
+            color: #27ae60;
+            font-size: 0.95em;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .pagination button:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .pagination button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        footer {
+            background: #f0f0f0;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+            color: #666;
+        }
+        .mock-tag {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Join Our Team</h1>
+        <p>Explore exciting career opportunities at 2gunta</p>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Job title or keyword...">
+            <input type="text" placeholder="Location...">
+            <select>
+                <option value="">All Categories</option>
+                <option value="engineering">Engineering</option>
+                <option value="sales">Sales & Marketing</option>
+                <option value="operations">Operations</option>
+            </select>
+            <button>Search</button>
+        </div>
+
+        <div class="jobs-grid">
+            <!-- Job Card 1 -->
+            <div class="job-card">
+                <div class="job-title">Senior PHP Developer</div>
+                <div class="job-company">2gunta • Engineering</div>
+                <div class="job-tags">
+                    <span class="tag">Full-time</span>
+                    <span class="tag">Remote</span>
+                    <span class="tag">Senior</span>
+                </div>
+                <div class="job-meta">
+                    <div class="job-meta-item">📍 New York, NY</div>
+                    <div class="job-meta-item">⭐ 12 applications</div>
+                </div>
+                <div class="salary">$80k - $120k/year</div>
+                <div class="job-description">
+                    We're looking for an experienced PHP developer to lead our backend development team...
+                </div>
+                <div class="job-footer">
+                    <button class="apply-btn">Apply Now</button>
+                    <span style="font-size: 0.85em; color: #888;">Posted 5 days ago</span>
+                </div>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div class="job-card">
+                <div class="job-title">Marketing Manager</div>
+                <div class="job-company">2gunta • Sales & Marketing</div>
+                <div class="job-tags">
+                    <span class="tag">Full-time</span>
+                    <span class="tag">Hybrid</span>
+                    <span class="tag">Mid-level</span>
+                </div>
+                <div class="job-meta">
+                    <div class="job-meta-item">📍 Los Angeles, CA</div>
+                    <div class="job-meta-item">⭐ 8 applications</div>
+                </div>
+                <div class="salary">$65k - $90k/year</div>
+                <div class="job-description">
+                    Lead our marketing initiatives and drive brand growth with innovative campaigns...
+                </div>
+                <div class="job-footer">
+                    <button class="apply-btn">Apply Now</button>
+                    <span style="font-size: 0.85em; color: #888;">Posted 3 days ago</span>
+                </div>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="job-card">
+                <div class="job-title">DevOps Engineer</div>
+                <div class="job-company">2gunta • Engineering</div>
+                <div class="job-tags">
+                    <span class="tag">Full-time</span>
+                    <span class="tag">Remote</span>
+                    <span class="tag">Senior</span>
+                </div>
+                <div class="job-meta">
+                    <div class="job-meta-item">📍 Remote</div>
+                    <div class="job-meta-item">⭐ 15 applications</div>
+                </div>
+                <div class="salary">$90k - $140k/year</div>
+                <div class="job-description">
+                    Manage our cloud infrastructure and ensure high availability of all systems...
+                </div>
+                <div class="job-footer">
+                    <button class="apply-btn">Apply Now</button>
+                    <span style="font-size: 0.85em; color: #888;">Posted 1 day ago</span>
+                </div>
+            </div>
+
+            <!-- Job Card 4 -->
+            <div class="job-card">
+                <div class="job-title">UX/UI Designer</div>
+                <div class="job-company">2gunta • Product</div>
+                <div class="job-tags">
+                    <span class="tag">Full-time</span>
+                    <span class="tag">Hybrid</span>
+                    <span class="tag">Mid-level</span>
+                </div>
+                <div class="job-meta">
+                    <div class="job-meta-item">📍 San Francisco, CA</div>
+                    <div class="job-meta-item">⭐ 6 applications</div>
+                </div>
+                <div class="salary">$70k - $100k/year</div>
+                <div class="job-description">
+                    Design beautiful and intuitive user interfaces that our users love...
+                </div>
+                <div class="job-footer">
+                    <button class="apply-btn">Apply Now</button>
+                    <span style="font-size: 0.85em; color: #888;">Posted 2 days ago</span>
+                </div>
+            </div>
+
+            <!-- Job Card 5 -->
+            <div class="job-card">
+                <div class="job-title">Data Scientist</div>
+                <div class="job-company">2gunta • Data</div>
+                <div class="job-tags">
+                    <span class="tag">Full-time</span>
+                    <span class="tag">Remote</span>
+                    <span class="tag">Senior</span>
+                </div>
+                <div class="job-meta">
+                    <div class="job-meta-item">📍 Remote</div>
+                    <div class="job-meta-item">⭐ 11 applications</div>
+                </div>
+                <div class="salary">$100k - $150k/year</div>
+                <div class="job-description">
+                    Build machine learning models to drive insights and improve our products...
+                </div>
+                <div class="job-footer">
+                    <button class="apply-btn">Apply Now</button>
+                    <span style="font-size: 0.85em; color: #888;">Posted 4 days ago</span>
+                </div>
+            </div>
+
+            <!-- Job Card 6 -->
+            <div class="job-card">
+                <div class="job-title">Sales Manager</div>
+                <div class="job-company">2gunta • Sales</div>
+                <div class="job-tags">
+                    <span class="tag">Full-time</span>
+                    <span class="tag">On-site</span>
+                    <span class="tag">Senior</span>
+                </div>
+                <div class="job-meta">
+                    <div class="job-meta-item">📍 Chicago, IL</div>
+                    <div class="job-meta-item">⭐ 7 applications</div>
+                </div>
+                <div class="salary">$80k - $120k/year</div>
+                <div class="job-description">
+                    Lead and manage our growing sales team to achieve ambitious revenue targets...
+                </div>
+                <div class="job-footer">
+                    <button class="apply-btn">Apply Now</button>
+                    <span style="font-size: 0.85em; color: #888;">Posted 1 week ago</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>Next →</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 2gunta. All rights reserved. | <a href="#" style="color: #667eea; text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: #667eea; text-decoration: none;">Terms of Service</a></p>
+    </footer>
+
+    <script>
+        // Mock Google Analytics
+        console.log('[MOCK] Google Analytics - Career page viewed');
+    </script>
+</body>
+</html>

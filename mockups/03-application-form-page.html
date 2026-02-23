@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Senior Software Engineer - 2gunta Recruitment</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B66X9RBN8T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-B66X9RBN8T');
+    </script>
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcKJ3QsAAAAAFygnbt0gY1eO9rqv5BGwD8VVuJX"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .form-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        .form-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-header h2 {
+            font-size: 24px;
+            color: #0073aa;
+            margin-bottom: 5px;
+        }
+        
+        .form-header p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-section h3 {
+            font-size: 16px;
+            color: #003d6b;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #0073aa;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .form-group label .required {
+            color: #e74c3c;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group input[type="file"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0073aa;
+            box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+        
+        .form-group input[type="file"] {
+            padding: 8px;
+            cursor: pointer;
+        }
+        
+        .form-group small {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .form-group input[type="checkbox"],
+        .form-group input[type="radio"] {
+            margin-right: 8px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label,
+        .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            font-weight: normal;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        /* reCAPTCHA Notice */
+        .recaptcha-info {
+            background: #e7f3ff;
+            border-left: 4px solid #0073aa;
+            padding: 12px;
+            margin: 20px 0;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #003d6b;
+        }
+        
+        .recaptcha-info strong {
+            color: #0073aa;
+        }
+        
+        /* Form Actions */
+        .form-actions {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #0073aa 0%, #005a87 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            max-width: 300px;
+        }
+        
+        .submit-button:hover {
+            background: linear-gradient(135deg, #005a87 0%, #004070 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .submit-button:disabled {
+            background: #999;
+            cursor: not-allowed;
+            opacity: 0.7;
+            transform: none;
+        }
+        
+        .cancel-button {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .cancel-button:hover {
+            background: #e5e5e5;
+        }
+        
+        .form-info {
+            background: #fffacd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #664d00;
+        }
+        
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-wrapper {
+                padding: 25px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .submit-button,
+            .cancel-button {
+                max-width: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Join Our Team</h1>
+            <p>Apply for Senior Software Engineer position</p>
+        </header>
+        
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h2>Application Form</h2>
+                <p>Please fill out all required fields marked with <span style="color: #e74c3c;">*</span></p>
+            </div>
+            
+            <!-- Status Messages -->
+            <div class="success-message" id="success-message">
+                ✓ Your application has been submitted successfully! We'll review it and get back to you soon.
+            </div>
+            <div class="error-message" id="error-message"></div>
+            
+            <!-- Form Info -->
+            <div class="form-info">
+                <strong>📋 Note:</strong> This form is protected by reCAPTCHA v3. Your submission will be verified for security purposes before processing.
+            </div>
+            
+            <form id="2gunta-application-form" method="post" enctype="multipart/form-data">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h3>👤 Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first_name">
+                                First Name <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="first_name" 
+                                name="first_name" 
+                                required
+                                placeholder="John"
+                            />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="last_name">
+                                Last Name <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="last_name" 
+                                name="last_name" 
+                                required
+                                placeholder="Doe"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">
+                                Email Address <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required
+                                placeholder="john@example.com"
+                            />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">
+                                Phone Number
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone"
+                                placeholder="+1 (555) 123-4567"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="location">
+                                Current Location
+                            </label>
+                            <input 
+                                type="text" 
+                                id="location" 
+                                name="location"
+                                placeholder="City, State/Country"
+                            />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience Section -->
+                <div class="form-section">
+                    <h3>💼 Experience</h3>
+                    
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="experience">
+                                Years of Experience <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="experience" 
+                                name="experience" 
+                                min="0"
+                                max="70"
+                                required
+                                placeholder="5"
+                            />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Application Documents -->
+                <div class="form-section">
+                    <h3>📄 Application Documents</h3>
+                    
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="resume">
+                                Resume/CV <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="file" 
+                                id="resume" 
+                                name="resume" 
+                                required
+                                accept=".pdf,.doc,.docx"
+                            />
+                            <small>📎 Accepted formats: PDF, DOC, DOCX (max 5MB)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="cover_letter">
+                                Cover Letter
+                            </label>
+                            <textarea 
+                                id="cover_letter" 
+                                name="cover_letter"
+                                placeholder="Tell us why you're interested in this role and what makes you a great fit..."
+                            ></textarea>
+                            <small>✏️ Share your story with us (optional, but highly recommended)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Privacy & Consent -->
+                <div class="form-section">
+                    <h3>🔒 Privacy & Consent</h3>
+                    
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="agree_gdpr" required />
+                            I agree to the <a href="#" style="color: #0073aa;">privacy policy</a> and <a href="#" style="color: #0073aa;">terms of service</a> <span class="required">*</span>
+                        </label>
+                        
+                        <label>
+                            <input type="checkbox" name="agree_communication" />
+                            I agree to receive communications about my application and future opportunities
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- reCAPTCHA Information -->
+                <div class="recaptcha-info">
+                    <strong>🤖 reCAPTCHA v3 Protection:</strong> This form is protected by Google reCAPTCHA v3, which uses advanced risk analysis to detect abuse while remaining transparent to valid users. Your submission will be analyzed automatically.
+                </div>
+                
+                <!-- Hidden reCAPTCHA Token -->
+                <input type="hidden" name="recaptcha_token" id="recaptcha_token" />
+                
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="submit-button" id="submit-button">
+                        Submit Application
+                    </button>
+                    <a href="#" class="cancel-button">Back to Job</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Track form interactions in Google Analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Application Form - Senior Software Engineer',
+                page_path: '/apply'
+            });
+        }
+        
+        // reCAPTCHA v3 Token Generation
+        const form = document.getElementById('2gunta-application-form');
+        const recaptchaSiteKey = '6LcKJ3QsAAAAAFygnbt0gY1eO9rqv5BGwD8VVuJX';
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get reCAPTCHA token
+            grecaptcha.ready(function() {
+                grecaptcha.execute(recaptchaSiteKey, {action: 'submit'}).then(function(token) {
+                    // Store token in hidden field
+                    document.getElementById('recaptcha_token').value = token;
+                    
+                    // Update button state
+                    const submitBtn = document.getElementById('submit-button');
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Verifying...';
+                    
+                    // Show success message (simulated for mockup)
+                    setTimeout(function() {
+                        document.getElementById('success-message').classList.add('show');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Application Submitted!';
+                        
+                        // Track successful submission
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'form_submit', {
+                                form_destination: 'job_application'
+                            });
+                        }
+                        
+                        // Reset form
+                        form.reset();
+                        setTimeout(() => {
+                            document.getElementById('success-message').classList.remove('show');
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Submit Application';
+                        }, 3000);
+                    }, 1500);
+                });
+            });
+        });
+        
+        // Clear success message when user starts typing
+        form.addEventListener('input', function() {
+            document.getElementById('error-message').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

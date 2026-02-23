@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2gunta Recruitment - Admin Settings (Google APIs Configuration)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f1f1f1;
+            color: #333;
+        }
+        
+        .wp-admin {
+            display: flex;
+        }
+        
+        .admin-sidebar {
+            width: 160px;
+            background: #23282d;
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .admin-sidebar h3 {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .admin-sidebar ul {
+            list-style: none;
+        }
+        
+        .admin-sidebar li {
+            margin: 5px 0;
+        }
+        
+        .admin-sidebar a {
+            color: #8a8f94;
+            text-decoration: none;
+            font-size: 13px;
+            display: block;
+            padding: 3px 0;
+        }
+        
+        .admin-sidebar a.active {
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .admin-sidebar a:hover {
+            color: #fff;
+        }
+        
+        .admin-header {
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-header h1 {
+            font-size: 20px;
+            color: #000;
+        }
+        
+        .user-menu {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .page-header {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+            border-left: 4px solid #0073aa;
+        }
+        
+        .page-header h2 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+        }
+        
+        .page-header p {
+            margin: 0;
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .settings-box {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px;
+        }
+        
+        .settings-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .settings-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .settings-section h3 {
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            color: #0073aa;
+        }
+        
+        .settings-section .description {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 13px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #0073aa;
+            box-shadow: 0 0 2px rgba(0, 115, 170, 0.5);
+        }
+        
+        .form-group .description {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+        
+        .notice {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid;
+            border-radius: 3px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .notice-info {
+            background: #d0e7f9;
+            border-color: #0073aa;
+            color: #003d6b;
+        }
+        
+        .notice-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .notice-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        
+        .button {
+            background: #0073aa;
+            color: #fff;
+            border: 1px solid #005a87;
+            padding: 8px 15px;
+            border-radius: 3px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .button:hover {
+            background: #005a87;
+        }
+        
+        .button-secondary {
+            background: #f3f3f3;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        
+        .button-secondary:hover {
+            background: #e5e5e5;
+        }
+        
+        .form-actions {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e5e5;
+        }
+        
+        .tabs {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .tabs a {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -1px;
+        }
+        
+        .tabs a.active {
+            color: #0073aa;
+            border-bottom-color: #0073aa;
+        }
+        
+        .tabs a:hover {
+            color: #0073aa;
+        }
+        
+        .security-note {
+            background: #fff8e5;
+            border: 1px solid #ffe5a5;
+            padding: 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #664d00;
+            margin-top: 8px;
+        }
+        
+        code {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wp-admin">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <h2 style="font-size: 16px; margin-bottom: 20px;">WordPress</h2>
+            
+            <h3>Main</h3>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+            
+            <h3>Content</h3>
+            <ul>
+                <li><a href="#">Posts</a></li>
+                <li><a href="#">Pages</a></li>
+            </ul>
+            
+            <h3>2gunta Recruitment</h3>
+            <ul>
+                <li><a href="#" class="active">Settings</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">Candidates</a></li>
+                <li><a href="#">Applications</a></li>
+                <li><a href="#">Activity Log</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div style="flex: 1;">
+            <div class="admin-header">
+                <h1>WordPress Admin</h1>
+                <div class="user-menu">
+                    Howdy, Admin | <a href="#">Log Out</a>
+                </div>
+            </div>
+            
+            <div class="admin-content">
+                <!-- Success Notice -->
+                <div class="notice notice-success">
+                    <p><strong>Settings saved.</strong> Your Google API credentials have been securely stored.</p>
+                </div>
+                
+                <div class="page-header">
+                    <h2>2gunta Recruitment Settings</h2>
+                    <p>Configure Google APIs and plugin settings</p>
+                </div>
+                
+                <!-- Tabs -->
+                <div class="tabs">
+                    <a href="#" class="active">Google APIs Configuration</a>
+                    <a href="#">General Settings</a>
+                    <a href="#">Email Notifications</a>
+                    <a href="#">Advanced</a>
+                </div>
+                
+                <!-- Settings Form -->
+                <form method="post" action="">
+                    <div class="settings-box">
+                        <!-- Google APIs Section -->
+                        <div class="settings-section">
+                            <h3>🔑 Google APIs Configuration</h3>
+                            <p class="description">
+                                Enter your Google API keys below. These are used for maps, analytics, and bot protection. 
+                                Keys are stored securely in your database and never exposed to the frontend.
+                            </p>
+                            
+                            <!-- Google Maps API -->
+                            <div class="form-group">
+                                <label for="google_maps_api_key">
+                                    Google Maps API Key
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="google_maps_api_key" 
+                                    name="2gunta_recruitment_google_maps_api_key" 
+                                    value="AIzaSyCZLboqyLKt1dVYCqnjPNKA-3SLHGUpefo"
+                                    placeholder="Enter your Google Maps API key"
+                                />
+                                <div class="description">
+                                    Used to display interactive maps on job detail pages showing job location.
+                                    <br />
+                                    <strong>Get this from:</strong> Google Cloud Console → APIs & Services → Credentials
+                                    <br />
+                                    <strong>Required API:</strong> Maps JavaScript API
+                                </div>
+                            </div>
+                            
+                            <!-- Google Analytics -->
+                            <div class="form-group">
+                                <label for="google_analytics_id">
+                                    Google Analytics Measurement ID
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="google_analytics_id" 
+                                    name="2gunta_recruitment_google_analytics_id" 
+                                    value="G-B66X9RBN8T"
+                                    placeholder="G-XXXXXXXXXX"
+                                />
+                                <div class="description">
+                                    Tracks recruitment funnel: career page views, job views, and applications.
+                                    <br />
+                                    <strong>Get this from:</strong> Google Analytics → Admin → Property Settings
+                                    <br />
+                                    <strong>Format:</strong> Must start with "G-" (Google Analytics 4)
+                                </div>
+                            </div>
+                            
+                            <!-- reCAPTCHA Site Key -->
+                            <div class="form-group">
+                                <label for="recaptcha_site_key">
+                                    reCAPTCHA v3 Site Key
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="recaptcha_site_key" 
+                                    name="2gunta_recruitment_recaptcha_site_key" 
+                                    value="6LcKJ3QsAAAAAFygnbt0gY1eO9rqv5BGwD8VVuJX"
+                                    placeholder="Enter your reCAPTCHA Site Key"
+                                />
+                                <div class="description">
+                                    Public key used on the frontend to verify users are human.
+                                    <br />
+                                    <strong>Get this from:</strong> Google reCAPTCHA Admin Console
+                                    <br />
+                                    <strong>Note:</strong> This key is publicly visible in page source (reCAPTCHA design)
+                                </div>
+                            </div>
+                            
+                            <!-- reCAPTCHA Secret Key -->
+                            <div class="form-group">
+                                <label for="recaptcha_secret_key">
+                                    reCAPTCHA v3 Secret Key
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="recaptcha_secret_key" 
+                                    name="2gunta_recruitment_recaptcha_secret_key" 
+                                    value="6LcKJ3QsAAAAAMzFJc9cs57kf05BSBb8acynm1yC"
+                                    placeholder="Enter your reCAPTCHA Secret Key"
+                                />
+                                <div class="description">
+                                    Private key used on the backend to verify reCAPTCHA tokens.
+                                    <br />
+                                    <strong>Get this from:</strong> Google reCAPTCHA Admin Console
+                                </div>
+                                <div class="security-note">
+                                    <strong>⚠️ Security:</strong> Never share your secret key. It's stored encrypted in your database.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature Toggles -->
+                        <div class="settings-section">
+                            <h3>⚙️ Feature Toggles</h3>
+                            <p class="description">
+                                Enable or disable individual Google API features without removing your credentials.
+                            </p>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" checked /> Enable Google Maps on Job Detail Pages
+                                </label>
+                                <div class="description">Shows map with job location when viewing job details</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" checked /> Enable Google Analytics Tracking
+                                </label>
+                                <div class="description">Tracks page views, job views, and form submissions</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" checked /> Enable reCAPTCHA v3 Protection
+                                </label>
+                                <div class="description">Protects application form from bot spam submissions</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Info Section -->
+                        <div class="settings-section">
+                            <h3>📊 Integration Status</h3>
+                            <div class="notice notice-info">
+                                <p>
+                                    <strong>All Google APIs configured and active!</strong>
+                                    <br />✓ Google Maps: Displaying job locations on detail pages
+                                    <br />✓ Google Analytics: Tracking recruitment funnel
+                                    <br />✓ reCAPTCHA v3: Protecting application form from bots
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="submit" class="button">Save Changes</button>
+                        <button type="button" class="button button-secondary" style="margin-left: 10px;">Reset to Defaults</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

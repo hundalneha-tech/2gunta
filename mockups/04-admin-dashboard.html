@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        .sidebar h2 {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar li {
+            margin-bottom: 5px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 12px 15px;
+            color: #bdc3c7;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #667eea;
+            color: white;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .topbar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .topbar h1 {
+            font-size: 1.8em;
+        }
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        .stat-card.green {
+            border-left-color: #27ae60;
+        }
+        .stat-card.orange {
+            border-left-color: #e67e22;
+        }
+        .stat-card.red {
+            border-left-color: #e74c3c;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #333;
+        }
+        .stat-change {
+            font-size: 0.85em;
+            color: #27ae60;
+            margin-top: 10px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .status-new {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-interview {
+            background: #cce5ff;
+            color: #004085;
+        }
+        .status-offer {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-hired {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            font-size: 0.85em;
+            border: 1px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .action-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-bar input,
+        .filter-bar select {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .pagination button:hover,
+        .pagination button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .export-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .export-btn:hover {
+            background: #229954;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            .sidebar a {
+                padding: 12px 8px;
+                font-size: 0;
+            }
+            .sidebar a::before {
+                content: attr(data-icon);
+                font-size: 1.2em;
+            }
+            .main-content {
+                margin-left: 60px;
+            }
+            .topbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>2gunta ATS</h2>
+        <ul>
+            <li><a href="#" class="active">📊 Dashboard</a></li>
+            <li><a href="#">📋 Jobs</a></li>
+            <li><a href="#">📧 Applications</a></li>
+            <li><a href="#">👥 Candidates</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
+            <li><a href="#">📈 Reports</a></li>
+            <li><a href="#">🔐 Users</a></li>
+            <li><a href="#">❓ Help</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="topbar">
+            <h1>Dashboard</h1>
+            <div class="user-menu">
+                <button class="export-btn">📥 Export Report</button>
+                <div style="width: 40px; height: 40px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">JD</div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Active Jobs</div>
+                <div class="stat-value">12</div>
+                <div class="stat-change">↑ 2 new this week</div>
+            </div>
+            <div class="stat-card green">
+                <div class="stat-label">Total Applications</div>
+                <div class="stat-value">156</div>
+                <div class="stat-change">↑ 24 new applications</div>
+            </div>
+            <div class="stat-card orange">
+                <div class="stat-label">In Pipeline</div>
+                <div class="stat-value">34</div>
+                <div class="stat-change">↑ 5 in interviews</div>
+            </div>
+            <div class="stat-card red">
+                <div class="stat-label">Unique Candidates</div>
+                <div class="stat-value">98</div>
+                <div class="stat-change">↑ 12 new candidates</div>
+            </div>
+        </div>
+
+        <!-- Recent Applications Card -->
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Recent Applications</h2>
+                <a href="#" style="color: #667eea; text-decoration: none; font-weight: 600;">View All →</a>
+            </div>
+
+            <div class="filter-bar">
+                <input type="text" placeholder="Search by name or email...">
+                <select>
+                    <option value="">All Statuses</option>
+                    <option value="new">New</option>
+                    <option value="interview">Interview</option>
+                    <option value="offer">Offer</option>
+                    <option value="hired">Hired</option>
+                </select>
+                <select>
+                    <option value="">All Jobs</option>
+                    <option value="1">Senior PHP Developer</option>
+                    <option value="2">DevOps Engineer</option>
+                    <option value="3">Marketing Manager</option>
+                </select>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Job</th>
+                        <th style="width: 50px;">Status</th>
+                        <th>Rating</th>
+                        <th>Applied</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>John Doe</strong><br>
+                            <span style="color: #666; font-size: 0.9em;">john.doe@example.com</span>
+                        </td>
+                        <td>Senior PHP Developer</td>
+                        <td><span class="status-badge status-interview">Interview</span></td>
+                        <td>⭐⭐⭐⭐⭐ (5.0)</td>
+                        <td>2 days ago</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn">View</button>
+                                <button class="action-btn">Update</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Jane Smith</strong><br>
+                            <span style="color: #666; font-size: 0.9em;">jane.smith@example.com</span>
+                        </td>
+                        <td>DevOps Engineer</td>
+                        <td><span class="status-badge status-offer">Offer</span></td>
+                        <td>⭐⭐⭐⭐ (4.5)</td>
+                        <td>1 day ago</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn">View</button>
+                                <button class="action-btn">Update</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Bob Johnson</strong><br>
+                            <span style="color: #666; font-size: 0.9em;">bob.j@example.com</span>
+                        </td>
+                        <td>Marketing Manager</td>
+                        <td><span class="status-badge status-new">New</span></td>
+                        <td>⭐⭐⭐ (3.5)</td>
+                        <td>3 hours ago</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn">View</button>
+                                <button class="action-btn">Update</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Alice Williams</strong><br>
+                            <span style="color: #666; font-size: 0.9em;">alice.w@example.com</span>
+                        </td>
+                        <td>Senior PHP Developer</td>
+                        <td><span class="status-badge status-hired">Hired</span></td>
+                        <td>⭐⭐⭐⭐⭐ (5.0)</td>
+                        <td>1 week ago</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn">View</button>
+                                <button class="action-btn">Update</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Charlie Brown</strong><br>
+                            <span style="color: #666; font-size: 0.9em;">charlie.b@example.com</span>
+                        </td>
+                        <td>UX/UI Designer</td>
+                        <td><span class="status-badge status-new">New</span></td>
+                        <td>⭐⭐⭐⭐ (4.0)</td>
+                        <td>5 minutes ago</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn">View</button>
+                                <button class="action-btn">Update</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>Next →</button>
+            </div>
+        </div>
+
+        <!-- Quick Actions Card -->
+        <div class="card">
+            <h2>Quick Actions</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <button style="padding: 15px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">➕ Post New Job</button>
+                <button style="padding: 15px; background: #27ae60; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">📧 Send Email Template</button>
+                <button style="padding: 15px; background: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">📥 Import Candidates</button>
+                <button style="padding: 15px; background: #e67e22; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">📊 View Reports</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock Google Analytics
+        console.log('[MOCK] Google Analytics - Admin dashboard loaded');
+    </script>
+</body>
+</html>

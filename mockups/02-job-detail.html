@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior PHP Developer at 2gunta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+        }
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+        .job-header {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .job-header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        .job-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        .section p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        .section li {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .info-box h3 {
+            font-size: 0.95em;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95em;
+        }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        .label {
+            color: #666;
+            font-weight: 500;
+        }
+        .value {
+            color: #333;
+            font-weight: 600;
+        }
+        .apply-btn-large {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .apply-btn-large:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea25 0%, #764ba225 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .share-btn {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        .share-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        .highlight {
+            background: #f0f4ff;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .job-header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="breadcrumb">
+            <a href="index.html">← Back to Careers</a>
+        </div>
+        <div class="job-header">
+            <h1>Senior PHP Developer</h1>
+            <p>2gunta • Engineering • New York, NY</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="section">
+                <h2>About This Role</h2>
+                <p>We're looking for an experienced PHP developer to lead our backend development team. You'll work on building robust, scalable APIs and backend systems that power our platform. This is a senior role where you'll mentor junior developers and provide technical leadership.</p>
+            </div>
+
+            <div class="section">
+                <h2>Responsibilities</h2>
+                <ul>
+                    <li>Design and develop scalable PHP applications and APIs</li>
+                    <li>Lead technical design reviews and architecture discussions</li>
+                    <li>Mentor junior developers and conduct code reviews</li>
+                    <li>Optimize database queries and improve application performance</li>
+                    <li>Work with cross-functional teams to deliver features on time</li>
+                    <li>Document code and create technical specifications</li>
+                    <li>Participate in on-call rotation for production support</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Required Qualifications</h2>
+                <ul>
+                    <li>5+ years of professional PHP development experience</li>
+                    <li>Expert knowledge of Laravel and/or WordPress</li>
+                    <li>Strong understanding of relational databases (MySQL/PostgreSQL)</li>
+                    <li>Experience with REST APIs and microservices architecture</li>
+                    <li>Proficiency in version control (Git)</li>
+                    <li>Strong problem-solving and communication skills</li>
+                    <li>Bachelor's degree in Computer Science or similar field (or equivalent experience)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Nice to Have</h2>
+                <ul>
+                    <li>Experience with Docker and containerization</li>
+                    <li>Knowledge of cloud platforms (AWS, GCP, Azure)</li>
+                    <li>Experience with CI/CD pipelines</li>
+                    <li>Open source contributions</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <strong>📌 What We Offer</strong><br>
+                • Competitive salary: $80,000 - $120,000/year<br>
+                • Remote work options<br>
+                • Health insurance & 401(k)<br>
+                • Professional development budget<br>
+                • Collaborative team environment
+            </div>
+
+            <div class="section">
+                <h2>Why Join 2gunta?</h2>
+                <p>2gunta is a fast-growing tech company focused on making recruitment easier and more efficient. We're building innovative solutions that help companies find great talent. You'll work with a talented team, have autonomy over your projects, and grow your skills in a supportive environment.</p>
+            </div>
+
+            <div class="section">
+                <h2>How to Apply</h2>
+                <p>Click the "Apply Now" button on the right to submit your application. Please include your resume and a brief cover letter explaining why you're interested in this role.</p>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <!-- Job Details Box -->
+            <div class="info-box">
+                <h3>Job Details</h3>
+                <div class="info-item">
+                    <span class="label">Location</span>
+                    <span class="value">New York, NY</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Job Type</span>
+                    <span class="value">Full-time</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Experience</span>
+                    <span class="value">Senior (5+ yrs)</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Salary</span>
+                    <span class="value" style="color: #27ae60;">$80k - $120k</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Department</span>
+                    <span class="value">Engineering</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Posted</span>
+                    <span class="value">5 days ago</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Remote</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">Laravel</span>
+                    <span class="tag">MySQL</span>
+                </div>
+            </div>
+
+            <!-- Apply Button -->
+            <button class="apply-btn-large">Apply Now</button>
+
+            <!-- Location Map Box -->
+            <div class="info-box">
+                <h3>Location</h3>
+                <p>📍 New York, NY, USA</p>
+                <div class="map-placeholder">
+                    [Google Map Integration]
+                </div>
+            </div>
+
+            <!-- Share Box -->
+            <div class="info-box">
+                <h3>Share This Job</h3>
+                <div class="share-buttons">
+                    <button class="share-btn">📱 Share</button>
+                    <button class="share-btn">⭐ Save</button>
+                </div>
+            </div>
+
+            <!-- Company Info Box -->
+            <div class="info-box">
+                <h3>About 2gunta</h3>
+                <p>2gunta is a recruitment technology company helping businesses find and hire great talent through innovative ATS solutions.</p>
+                <a href="#" style="color: #667eea; text-decoration: none; font-weight: 600;">Learn more →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock Google Analytics
+        console.log('[MOCK] Google Analytics - Job detail page viewed, Job ID: 123');
+    </script>
+</body>
+</html>
